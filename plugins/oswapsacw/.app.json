@@ -1,0 +1,12 @@
+{
+  "apps": {
+    "github": {
+      "id": "connector_76869538009648d5b282a4bb21c3d157",
+      "required": false
+    },
+    "gitlab": {
+      "id": "connector_0c9786b2f41f41558056126bdb46c9bd",
+      "required": false
+    }
+  }
+}

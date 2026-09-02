@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oswap.ca/schemas/oswapsacw/audit-record.schema.json",
+  "title": "OSWAPSACW Audit Record",
+  "type": "object",
+  "required": ["oswapsacw_version", "operation_id", "request", "authorization", "execution", "verification"],
+  "properties": {
+    "oswapsacw_version": {"type": "string"},
+    "operation_id": {"type": "string", "minLength": 1},
+    "timestamp_utc": {"type": "string", "format": "date-time"},
+    "request": {
+      "type": "object",
+      "required": ["summary", "canonical_operation"],
+      "properties": {
+        "summary": {"type": "string"},
+        "canonical_operation": {"type": "string"}
+      }
+    },
+    "proposal": {"type": "object"},
+    "authorization": {
+      "type": "object",
+      "required": ["required", "status"],
+      "properties": {
+        "required": {"type": "boolean"},
+        "status": {"enum": ["not_required", "approved", "denied", "cancelled"]},
+        "scope": {"type": "string"}
+      }
+    },
+    "execution": {
+      "type": "object",
+      "required": ["tools_used", "actions"],
+      "properties": {
+        "tools_used": {"type": "array", "items": {"type": "string"}},
+        "actions": {"type": "array", "items": {"type": "string"}},
+        "changed_artifacts": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "validation": {"type": "object"},
+    "verification": {"type": "object"},
+    "errors": {"type": "array", "items": {"type": "string"}},
+    "unresolved_gaps": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

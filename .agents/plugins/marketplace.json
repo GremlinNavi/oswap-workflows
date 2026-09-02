@@ -1,0 +1,20 @@
+{
+  "name": "oswap-local",
+  "interface": {
+    "displayName": "OSWAP Plugins"
+  },
+  "plugins": [
+    {
+      "name": "oswapsacw",
+      "source": {
+        "source": "local",
+        "path": "./plugins/oswapsacw"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}
