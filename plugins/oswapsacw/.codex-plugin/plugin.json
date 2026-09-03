@@ -1,7 +1,7 @@
 {
   "name": "oswapsacw",
-  "version": "0.1.0",
-  "description": "OSWAP Standard for Auditable Code Workflows: human-authorized, provenance-first orchestration across coding tools.",
+  "version": "0.2.0",
+  "description": "OSWAP Standard for Auditable Code Workflows: informed-consent, provenance-first orchestration across coding tools.",
   "author": {
     "name": "GremlinNavi",
     "url": "https://github.com/GremlinNavi"
@@ -9,21 +9,21 @@
   "homepage": "https://oswap.ca",
   "repository": "https://github.com/GremlinNavi/oswapsacw-chatgpt-plugin",
   "license": "Apache-2.0",
-  "keywords": ["oswap", "audit", "provenance", "open-source", "developer-tools", "human-in-the-loop"],
+  "keywords": ["oswap", "audit", "provenance", "open-source", "developer-tools", "human-in-the-loop", "informed-consent"],
   "skills": "./skills/",
   "apps": "./.app.json",
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "OSWAPSACW",
-    "shortDescription": "Auditable, human-authorized code workflows",
-    "longDescription": "Applies the OSWAP Standard for Auditable Code Workflows to local and remote software-development tasks while preserving provider permissions, explicit consent boundaries, verification, and provenance.",
+    "shortDescription": "Auditable, consent-gated code workflows",
+    "longDescription": "Applies the OSWAP Standard for Auditable Code Workflows to local and remote development while preserving provider permissions, operation-scoped informed consent, verification, and provenance.",
     "developerName": "Open-Source World Access Project",
     "category": "Developer Tools",
     "capabilities": ["Workflow", "Audit", "Developer Tools"],
     "websiteURL": "https://oswap.ca",
     "defaultPrompt": [
       "Audit this repository using OSWAPSACW.",
-      "Implement this change with an OSWAPSACW audit trail.",
+      "Implement this change with an OSWAPSACW consent and audit trail.",
       "Preview oswap upload twin=2 without publishing."
     ]
   }

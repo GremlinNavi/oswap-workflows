@@ -21,14 +21,20 @@ if ($expression -notmatch '^[0-9+\-*/^().]+$') {
     throw 'Twin expression contains characters outside the OSWAP arithmetic grammar.'
 }
 
+$actionClass = if ($verb -eq 'upload') { 'remote_write' } else { 'local_write' }
+$transportOperation = if ($verb -eq 'upload') { 'publish-replicas' } else { 'retrieve-replicas' }
+
 $result = [ordered]@{
     standard = 'OSWAPSACW'
     canonical_command = "oswap $verb twin=$expression"
     verb = $verb
     replication_expression = $expression
-    transport_operation = if ($verb -eq 'upload') { 'publish-replicas' } else { 'retrieve-replicas' }
+    transport_operation = $transportOperation
+    action_class = $actionClass
+    consent_required = $true
     requires_remote_write_authorization = ($verb -eq 'upload')
     may_modify_local_state = ($verb -eq 'download')
+    consent_gate = 'scripts/Assert-OSWAPSACWConsent.ps1'
     arbitrary_shell_evaluation = $false
 }
 

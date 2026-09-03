@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oswap.ca/schemas/oswapsacw/consent-envelope.schema.json",
+  "title": "OSWAPSACW Informed Consent Envelope",
+  "type": "object",
+  "required": [
+    "operation_id",
+    "action_class",
+    "summary",
+    "targets",
+    "side_effects",
+    "authorization"
+  ],
+  "properties": {
+    "operation_id": {"type": "string", "minLength": 1},
+    "action_class": {
+      "enum": ["read_only", "local_write", "remote_write", "destructive"]
+    },
+    "summary": {"type": "string", "minLength": 1},
+    "targets": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "side_effects": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "data_exposure": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "reversible": {"type": "boolean"},
+    "rollback_plan": {"type": "string"},
+    "authorization": {
+      "type": "object",
+      "required": ["required", "status", "scope"],
+      "properties": {
+        "required": {"type": "boolean"},
+        "status": {
+          "enum": ["not_required", "approved", "denied", "cancelled", "missing"]
+        },
+        "scope": {"type": "string"},
+        "approved_at_utc": {"type": "string", "format": "date-time"},
+        "expires_after_operation": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

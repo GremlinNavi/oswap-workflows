@@ -13,17 +13,30 @@
       "required": ["summary", "canonical_operation"],
       "properties": {
         "summary": {"type": "string"},
-        "canonical_operation": {"type": "string"}
+        "canonical_operation": {"type": "string"},
+        "action_class": {
+          "enum": ["read_only", "local_write", "remote_write", "destructive"]
+        }
       }
     },
-    "proposal": {"type": "object"},
+    "proposal": {
+      "type": "object",
+      "properties": {
+        "targets": {"type": "array", "items": {"type": "string"}},
+        "side_effects": {"type": "array", "items": {"type": "string"}},
+        "data_exposure": {"type": "array", "items": {"type": "string"}},
+        "reversible": {"type": "boolean"},
+        "rollback_plan": {"type": "string"}
+      }
+    },
     "authorization": {
       "type": "object",
-      "required": ["required", "status"],
+      "required": ["required", "status", "scope"],
       "properties": {
         "required": {"type": "boolean"},
-        "status": {"enum": ["not_required", "approved", "denied", "cancelled"]},
-        "scope": {"type": "string"}
+        "status": {"enum": ["not_required", "approved", "denied", "cancelled", "missing"]},
+        "scope": {"type": "string"},
+        "expires_after_operation": {"type": "boolean"}
       }
     },
     "execution": {
