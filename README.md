@@ -68,3 +68,9 @@ The resolver currently implements canonical `twin` transfer parsing only. Planne
 - `docs/OSWAPSACW_CHATGPT_PLUGIN_TEST_VECTORS.txt` provides plain-text accessibility-friendly test vectors.
 
 The current contract treats `twin` as cardinality and `joker` as policy. Publisher principals are authorization subjects rather than assumptions about a person's singular identity, and credential compromise is handled independently from project or principal attribution.
+
+## Tech-Assisted Workflows
+
+`docs/OSWAP_TECH_ASSISTED_WORKFLOWS.md` defines the OSWAP model for auditable human-authorized workflows that combine local execution, provider integrations, LLM tool use, and independent verification.
+
+Repository provisioning and cross-provider publication are documented as canonical examples. Tool progress is treated as activity evidence rather than completion proof, and partial execution must remain visible in the audit record.
