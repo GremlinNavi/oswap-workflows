@@ -88,3 +88,18 @@ For Git publication, exact remote commit equality is preferred when the transpor
 `twin` remains replication cardinality. `joker` remains a policy dimension. Tech-Assisted Workflows define how authorized tools carry out and record operations; they do not redefine either syntax term.
 
 A future OSWAP parser MAY translate human-readable intent into a canonical operation plan, but the plan MUST remain subject to deterministic policy validation and provider authorization before mutation.
+## Post-preflight outcome
+
+The authorized workflow subsequently created the public GitHub repository `GremlinNavi/oswapsacw-chatgpt-plugin` and pushed local `main`.
+
+Verification established exact commit equality between local `HEAD` and GitHub `refs/heads/main` at:
+
+```text
+2910da15c51ea6b2aeee4016ada71d50a819fa70
+```
+
+The local `origin` remote now resolves to the GitHub repository and `main` tracks `origin/main`.
+
+GitLab publication remains a separate workflow state. The connected GitLab integration can inspect the `GremlinNavi-group` namespace, but the available operation set did not expose project creation, and no authenticated GitLab CLI session was present on the local machine. Accordingly, this record does not claim GitLab repository creation or mirroring as complete.
+
+This split outcome demonstrates the OSWAP rule that each provider target is verified independently rather than treating a multi-provider request as all-or-nothing or inferring success across providers.
