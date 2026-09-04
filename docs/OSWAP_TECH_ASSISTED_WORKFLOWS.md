@@ -103,3 +103,22 @@ The local `origin` remote now resolves to the GitHub repository and `main` track
 GitLab publication remains a separate workflow state. The connected GitLab integration can inspect the `GremlinNavi-group` namespace, but the available operation set did not expose project creation, and no authenticated GitLab CLI session was present on the local machine. Accordingly, this record does not claim GitLab repository creation or mirroring as complete.
 
 This split outcome demonstrates the OSWAP rule that each provider target is verified independently rather than treating a multi-provider request as all-or-nothing or inferring success across providers.
+## Completed GitLab provisioning via Tech-Assisted Workflow
+
+A later continuation of the same authorized workflow completed GitLab provisioning through Remote Desktop Commander without exposing provider credentials.
+
+The initial local Git executable resolved to the devkitPro/MSYS2 distribution. Its attempt to invoke Git Credential Manager during the new-project push failed because of an incompatible .NET assembly load. The workflow did not treat that failure as provider denial.
+
+Capability discovery then identified the standard Git for Windows installation and its credential-manager integration. Using that compatible Git implementation, an authenticated push to the previously absent target caused GitLab's push-to-create behavior to provision `GremlinNavi-group/oswapsacw-chatgpt-plugin` and create `main`.
+
+Verification established exact commit equality at creation time between local `HEAD`, GitHub `main`, and GitLab `main`:
+
+```text
+d0b7d714e4cffcae73ab333aed0dc5f8186d6e94
+```
+
+The local repository now records separate `origin` (GitHub) and `gitlab` remotes. No force-push or history rewrite was used.
+
+The GitLab provider created the project with `private` visibility by default. That visibility state is recorded rather than silently changed: publication visibility is a separate provider mutation and therefore a separate auditable decision.
+
+This run demonstrates an OSWAP Tech-Assisted Workflow principle: a tool/runtime failure MAY justify capability-preserving substitution when the authorization scope, target, intended operation, and resulting verification remain unchanged. The failed path and successful substitute SHOULD both remain observable in the provenance record.
