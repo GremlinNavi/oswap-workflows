@@ -7,7 +7,7 @@
     "url": "https://github.com/GremlinNavi"
   },
   "homepage": "https://oswap.ca",
-  "repository": "https://github.com/GremlinNavi/oswapsacw-chatgpt-plugin",
+  "repository": "https://github.com/GremlinNavi/oswap-workflows",
   "license": "Apache-2.0",
   "keywords": ["oswap", "audit", "provenance", "open-source", "developer-tools", "human-in-the-loop", "informed-consent"],
   "skills": "./skills/",

@@ -37,7 +37,7 @@ Creating or mirroring an OSWAP code repository across Git hosting providers is a
 Example target set:
 
 ```text
-local source: oswapsacw-chatgpt-plugin
+local source: oswap-workflows
 provider A: GitHub / GremlinNavi
 provider B: GitLab / GremlinNavi-group
 ```
@@ -63,7 +63,7 @@ An OSWAP workflow MAY combine multiple tools when each tool is used within its a
 The orchestration layer SHOULD record which tool performed each material action rather than describing the entire sequence as if it were performed by a single agent.
 ## Recorded example: 2026-09-03 repository provisioning preflight
 
-During an authorized OSWAP repository-provisioning workflow, the local `oswapsacw-chatgpt-plugin` repository was inspected through Remote Desktop Commander.
+During an authorized OSWAP repository-provisioning workflow, the local `oswap-workflows` repository was inspected through Remote Desktop Commander.
 
 Observed state at preflight:
 
@@ -71,7 +71,7 @@ Observed state at preflight:
 - Local HEAD: `709a1ba` (`Document and test OSWAPSACW plugin semantics`).
 - No remote was configured in the local repository at the time of inspection.
 - GitHub CLI authentication resolved to the `GremlinNavi` account.
-- The intended GitHub target `GremlinNavi/oswapsacw-chatgpt-plugin` was not present when checked.
+- The intended GitHub target `GremlinNavi/oswap-workflows` was not present when checked.
 - Existing sibling repositories demonstrated a GitLab namespace pattern under `GremlinNavi-group`.
 - No GitLab project creation was represented as completed because the available provider path did not establish an authorized project-creation operation during this preflight.
 
@@ -90,7 +90,7 @@ For Git publication, exact remote commit equality is preferred when the transpor
 A future OSWAP parser MAY translate human-readable intent into a canonical operation plan, but the plan MUST remain subject to deterministic policy validation and provider authorization before mutation.
 ## Post-preflight outcome
 
-The authorized workflow subsequently created the public GitHub repository `GremlinNavi/oswapsacw-chatgpt-plugin` and pushed local `main`.
+The authorized workflow subsequently created the public GitHub repository `GremlinNavi/oswap-workflows` and pushed local `main`.
 
 Verification established exact commit equality between local `HEAD` and GitHub `refs/heads/main` at:
 
@@ -109,7 +109,7 @@ A later continuation of the same authorized workflow completed GitLab provisioni
 
 The initial local Git executable resolved to the devkitPro/MSYS2 distribution. Its attempt to invoke Git Credential Manager during the new-project push failed because of an incompatible .NET assembly load. The workflow did not treat that failure as provider denial.
 
-Capability discovery then identified the standard Git for Windows installation and its credential-manager integration. Using that compatible Git implementation, an authenticated push to the previously absent target caused GitLab's push-to-create behavior to provision `GremlinNavi-group/oswapsacw-chatgpt-plugin` and create `main`.
+Capability discovery then identified the standard Git for Windows installation and its credential-manager integration. Using that compatible Git implementation, an authenticated push to the previously absent target caused GitLab's push-to-create behavior to provision `GremlinNavi-group/oswap-workflows` and create `main`.
 
 Verification established exact commit equality at creation time between local `HEAD`, GitHub `main`, and GitLab `main`:
 
