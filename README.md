@@ -74,3 +74,9 @@ The current contract treats `twin` as cardinality and `joker` as policy. Publish
 `docs/OSWAP_TECH_ASSISTED_WORKFLOWS.md` defines the OSWAP model for auditable human-authorized workflows that combine local execution, provider integrations, LLM tool use, and independent verification.
 
 Repository provisioning and cross-provider publication are documented as canonical examples. Tool progress is treated as activity evidence rather than completion proof, and partial execution must remain visible in the audit record.
+
+## LLM-Assisted Console Parser
+
+`docs/OSWAP_LLM_ASSISTED_CONSOLE_PARSER.md` defines the planned OSWAP parser profile for multilingual, typo-tolerant, human-readable console input. The LLM layer produces a typed parse candidate only; deterministic OSWAP validation, effect classification, consent, provider authorization, and independent verification remain mandatory before any mutation.
+
+The profile also records the planned explicit `@Tool` invocation convention, context provenance, experimental high-level intent envelopes, and the rule that raw user or model text must never be passed to arbitrary shell evaluation.
