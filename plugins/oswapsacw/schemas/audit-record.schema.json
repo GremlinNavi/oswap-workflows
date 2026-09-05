@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://oswap.ca/schemas/oswapsacw/audit-record.schema.json",
+  "$id": "urn:oswap:oswapsacw:schema:audit-record:1",
   "title": "OSWAPSACW Audit Record",
   "type": "object",
   "required": ["oswapsacw_version", "operation_id", "request", "authorization", "execution", "verification"],
