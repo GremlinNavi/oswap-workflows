@@ -45,6 +45,8 @@ plugins/oswapsacw/schemas/consent-envelope.schema.json
 plugins/oswapsacw/scripts/Assert-OSWAPSACWConsent.ps1
 plugins/oswapsacw/scripts/Resolve-OSWAPSACWCommand.ps1
 plugins/oswapsacw/tests/Test-OSWAPSACW.ps1
+docs/OSWAP_TECH_ASSISTED_WORKFLOWS.md
+docs/OSWAP_LLM_EPISTEMIC_GUARDRAIL.md
 ```
 
 ## Local validation
@@ -74,6 +76,16 @@ The current contract treats `twin` as cardinality and `joker` as policy. Publish
 `docs/OSWAP_TECH_ASSISTED_WORKFLOWS.md` defines the OSWAP model for auditable human-authorized workflows that combine local execution, provider integrations, LLM tool use, and independent verification.
 
 Repository provisioning and cross-provider publication are documented as canonical examples. Tool progress is treated as activity evidence rather than completion proof, and partial execution must remain visible in the audit record.
+
+## LLM epistemic guardrail
+
+`docs/OSWAP_LLM_EPISTEMIC_GUARDRAIL.md` defines the proposed OSWAP epistemic guardrail for LLM-assisted software development.
+
+Its central rule is that generative output is not promoted into verified project knowledge merely because a model produced it, repeated it, or another model agreed with it. Material claims should be grounded in independently inspectable repository evidence, authoritative documentation, deterministic tests, runtime observation, provider-backed state, or a documented combination of those sources.
+
+The proposed feedback loop separates human intent, bounded delegation, model analysis, independent critique, deterministic verification, human authorization, execution, post-operation verification, and provenance. Model consensus is treated as a critique signal rather than proof.
+
+The optional `epistemic` object in `plugins/oswapsacw/schemas/audit-record.schema.json` records claims, evidence classes, deterministic checks, evaluator independence, human decisions, and residual uncertainty without requiring disclosure of hidden model chain-of-thought.
 
 ## LLM-Assisted Console Parser
 
