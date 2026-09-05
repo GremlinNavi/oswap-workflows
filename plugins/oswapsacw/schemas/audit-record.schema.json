@@ -48,6 +48,63 @@
         "changed_artifacts": {"type": "array", "items": {"type": "string"}}
       }
     },
+    "epistemic": {
+      "type": "object",
+      "description": "Optional LLM epistemic-guardrail record separating generative claims from independently inspectable evidence.",
+      "properties": {
+        "models_used": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["claim", "status"],
+            "properties": {
+              "claim": {"type": "string", "minLength": 1},
+              "status": {
+                "enum": ["proposed", "supported", "rejected", "partially_verified", "unverified", "inconclusive"]
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {"type": "string"}
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["class", "source"],
+            "properties": {
+              "class": {"enum": ["E0", "E1", "E2", "E3"]},
+              "source": {"type": "string", "minLength": 1},
+              "result": {"type": "string"},
+              "provenance": {"type": "string"}
+            },
+            "additionalProperties": true
+          }
+        },
+        "deterministic_checks": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "evaluator_independence": {
+          "enum": ["independent_model_or_human", "same_model_separate_pass", "deterministic_tool", "mixed", "not_applicable", "unknown"]
+        },
+        "human_decision": {
+          "enum": ["accepted", "rejected", "revision_requested", "not_yet_decided", "not_applicable"]
+        },
+        "residual_uncertainty": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "additionalProperties": true
+    },
     "validation": {"type": "object"},
     "verification": {"type": "object"},
     "errors": {"type": "array", "items": {"type": "string"}},
