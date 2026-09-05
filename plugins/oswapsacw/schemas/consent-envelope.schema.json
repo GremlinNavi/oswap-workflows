@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://oswap.ca/schemas/oswapsacw/consent-envelope.schema.json",
+  "$id": "urn:oswap:oswapsacw:schema:consent-envelope:1",
   "title": "OSWAPSACW Informed Consent Envelope",
   "type": "object",
   "required": [
