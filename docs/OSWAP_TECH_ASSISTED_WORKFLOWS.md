@@ -25,6 +25,44 @@ human intent
 
 Each stage SHOULD be observable separately. A progress message such as `Fetching Repository README Content` or `Creating repository` is an activity description, not proof that the activity completed.
 
+## LLM epistemic guardrail
+
+When an LLM participates in an OSWAP Tech-Assisted Workflow, its output is treated as a claim, proposal, interpretation, or hypothesis until supported by independently inspectable evidence.
+
+The canonical epistemic rule is:
+
+```text
+LLM assertion != verified fact
+LLM-generated code != verified implementation
+LLM agreement != independent proof
+```
+
+A model's conclusion MUST NOT become accepted software-development state solely because the model generated it, repeated it, or another model agreed with it.
+
+For material LLM-assisted work, the workflow SHOULD use the following feedback structure where applicable:
+
+```text
+human intent
+  -> bounded task definition
+  -> evidence acquisition
+  -> LLM proposal or analysis
+  -> independent critique
+  -> deterministic verification where available
+  -> human authorization / acceptance decision
+  -> execution
+  -> post-execution verification
+  -> provenance record
+  -> next bounded task
+```
+
+Confidence SHOULD increase because independent evidence accumulates, not because generative output is repeated. Repository inspection, authoritative documentation, compiler output, tests, static analysis, checksums, runtime observation, and provider-backed state are preferred over model judgment when they directly test the claim.
+
+Model consensus MAY be used as a critique signal, but MUST NOT be represented as independent proof without independently established evidence. When the same model performs generator and evaluator roles, the record SHOULD NOT describe those passes as independent verification.
+
+Consequential work SHOULD be delegated as bounded, reviewable tasks with an explicit objective, target, mutation scope, stopping condition, and verification method. A model recommendation does not expand the user's authorization scope.
+
+The detailed proposed standard is defined in `docs/OSWAP_LLM_EPISTEMIC_GUARDRAIL.md`.
+
 ## Provider and execution boundaries
 
 OSWAP does not merge credentials or collapse provider trust boundaries. GitHub, GitLab, the local operating system, Remote Desktop Commander, ChatGPT integrations, and other services retain their own authentication, authorization, and policy controls.
@@ -80,6 +118,8 @@ This is an intentional example of auditable partial execution: capability discov
 ## Minimum audit fields
 
 A Tech-Assisted Workflow record SHOULD capture, where applicable: human authorization subject, declared intent, tool or adapter identity, provider namespace, repository or resource identifier, operation class, pre-operation state, execution result, resulting commit or object identifier, timestamp, verification method, and unresolved gaps.
+
+For LLM-assisted work, the record SHOULD additionally capture material model claims or proposed changes, evidence consulted, deterministic checks performed, human acceptance or rejection, and unresolved epistemic uncertainty. OSWAP auditability concerns observable instructions, claims, evidence, actions, decisions, and results; it does not require storage or disclosure of a model's hidden chain-of-thought.
 
 For Git publication, exact remote commit equality is preferred when the transport preserves Git history. Provider-generated equivalent commits require independent content verification and an explicit transport-equivalence record.
 
